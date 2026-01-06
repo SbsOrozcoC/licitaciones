@@ -17,5 +17,25 @@ if ($method === 'GET' && preg_match('#^/ofertas/(\d+)$#', $uri, $matches)) {
     return;
 }
 
+if ($method === 'POST' && $uri === '/ofertas') {
+    $controller->store();
+    return;
+}
+
+if ($method === 'GET' && $uri === '/ofertas/export') {
+    $controller->export();
+    return;
+}
+
+if ($method === 'PUT' && preg_match('#^/ofertas/(\d+)$#', $uri, $matches)) {
+    $controller->update((int) $matches[1]);
+    return;
+}
+
+if ($method === 'POST' && preg_match('#^/ofertas/(\d+)/documentos$#', $uri, $matches)) {
+    $controller->uploadDocumento((int) $matches[1]);
+    return;
+}
+
 http_response_code(404);
 echo '404 | Ruta no encontrada';
