@@ -17,5 +17,11 @@ if ($method === 'GET' && preg_match('#^/ofertas/(\d+)$#', $uri, $matches)) {
     return;
 }
 
+if ($method === 'POST' && $uri === '/ofertas') {
+    $controller->store();
+    return;
+}
+
+
 http_response_code(404);
 echo '404 | Ruta no encontrada';

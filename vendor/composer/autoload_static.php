@@ -17,6 +17,7 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
     );
 
@@ -24,6 +25,10 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         'v' =>
         array (
             'voku\\' => 5,
+        ),
+        'Z' =>
+        array (
+            'ZipStream\\' => 10,
         ),
         'S' =>
         array (
@@ -42,8 +47,16 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         'P' =>
         array (
             'Psr\\SimpleCache\\' => 16,
+            'Psr\\Http\\Message\\' => 17,
+            'Psr\\Http\\Client\\' => 16,
             'Psr\\Container\\' => 14,
             'Psr\\Clock\\' => 10,
+            'PhpOffice\\PhpSpreadsheet\\' => 25,
+        ),
+        'M' =>
+        array (
+            'MyCLabs\\Enum\\' => 13,
+            'Matrix\\' => 7,
         ),
         'I' =>
         array (
@@ -58,6 +71,8 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         ),
         'C' =>
         array (
+            'Composer\\Pcre\\' => 14,
+            'Complex\\' => 8,
             'Carbon\\Doctrine\\' => 16,
             'Carbon\\' => 7,
         ),
@@ -71,6 +86,10 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         'voku\\' =>
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'ZipStream\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/maennchen/zipstream-php/src',
         ),
         'Symfony\\Polyfill\\Php80\\' =>
         array (
@@ -120,6 +139,15 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
+        'Psr\\Http\\Message\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Psr\\Http\\Client\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
         'Psr\\Container\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
@@ -127,6 +155,18 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         'Psr\\Clock\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/clock/src',
+        ),
+        'PhpOffice\\PhpSpreadsheet\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
+        ),
+        'MyCLabs\\Enum\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
+        ),
+        'Matrix\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
         ),
         'Illuminate\\Support\\' =>
         array (
@@ -150,6 +190,14 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/src',
         ),
+        'Composer\\Pcre\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/composer/pcre/src',
+        ),
+        'Complex\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
+        ),
         'Carbon\\Doctrine\\' =>
         array (
             0 => __DIR__ . '/..' . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine',
@@ -164,13 +212,23 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'H' =>
+        array (
+            'HTMLPurifier' =>
+            array (
+                0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
-        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'Stringable' => __DIR__ . '/..' . '/myclabs/php-enum/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );
@@ -180,6 +238,7 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34::$classMap;
 
         }, null, ClassLoader::class);
