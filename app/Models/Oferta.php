@@ -28,4 +28,9 @@ class Oferta extends Model
     {
         return $this->belongsTo(Actividad::class, 'actividad_id');
     }
+
+    public function documentos()
+    {
+        return $this->hasMany(Documento::class, 'licitacion_id');
+    }
 }

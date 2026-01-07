@@ -35,11 +35,107 @@
                 <td>{{ offer.fecha_cierre }} {{ offer.hora_cierre }}</td>
                 <td>{{ offer.estado }}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary me-1">Ver</button>
-                    <button class="btn btn-sm btn-secondary">Editar</button>
+                    <button
+                        class="btn btn-sm btn-primary me-1"
+                        @click="openViewModal(offer.id)">
+                        Ver
+                    </button>
+
+                    <button
+                        class="btn btn-sm btn-secondary"
+                        @click="openEditModal(offer)">
+                        Editar
+                    </button>
+
                 </td>
             </tr>
         </tbody>
     </table>
 
+    <nav v-if="meta.last_page > 1">
+        <ul class="pagination">
+
+            <li class="page-item" :class="{ disabled: meta.page === 1 }">
+                <button class="page-link" @click="changePage(meta.page - 1)">
+                    Anterior
+                </button>
+            </li>
+
+            <li
+                class="page-item"
+                v-for="page in meta.last_page"
+                :key="page"
+                :class="{ active: page === meta.page }">
+                <button class="page-link" @click="changePage(page)">
+                    {{ page }}
+                </button>
+            </li>
+
+            <li class="page-item" :class="{ disabled: meta.page === meta.last_page }">
+                <button class="page-link" @click="changePage(meta.page + 1)">
+                    Siguiente
+                </button>
+            </li>
+
+        </ul>
+    </nav>
+
+</div>
+
+
+<div v-if="showViewModal" class="modal fade show d-block" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Detalle de la oferta</h5>
+                <button type="button" class="btn-close" @click="closeViewModal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <div v-if="viewLoading" class="alert alert-info">
+                    Cargando información...
+                </div>
+
+                <div v-if="viewOffer">
+
+                    <p><strong>Consecutivo:</strong> {{ viewOffer.consecutivo }}</p>
+                    <p><strong>Objeto:</strong> {{ viewOffer.objeto }}</p>
+                    <p><strong>Descripción:</strong> {{ viewOffer.descripcion }}</p>
+                    <p><strong>Estado:</strong> {{ viewOffer.estado }}</p>
+
+                    <p><strong>Actividad:</strong>
+                        {{ viewOffer.actividad ? viewOffer.actividad.producto : 'N/A' }}
+                    </p>
+
+                    <hr>
+
+                    <h6>Documentos</h6>
+
+                    <div v-if="viewOffer.documentos.length === 0" class="alert alert-warning">
+                        No hay documentos cargados.
+                    </div>
+
+                    <ul v-else>
+                        <li v-for="doc in viewOffer.documentos" :key="doc.id">
+                            <a
+                                :href="`/storage/uploads/${doc.archivo}`"
+                                target="_blank">
+                                {{ doc.titulo || doc.archivo }}
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" @click="closeViewModal">
+                    Cerrar
+                </button>
+            </div>
+
+        </div>
+    </div>
 </div>

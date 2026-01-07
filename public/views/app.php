@@ -21,6 +21,7 @@
     <?php require __DIR__ . '/offers/form.php'; ?>
     <?php require __DIR__ . '/offers/filters.php'; ?>
     <?php require __DIR__ . '/offers/table.php'; ?>
+    <?php require __DIR__ . '/offers/edit-modal.php'; ?>
 
 </div>
 

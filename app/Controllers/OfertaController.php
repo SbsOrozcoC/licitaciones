@@ -56,7 +56,7 @@ class OfertaController
 
     public function show(int $id): void
     {
-        $oferta = Oferta::find($id);
+        $oferta = Oferta::with(['actividad', 'documentos'])->find($id);
 
         if (!$oferta) {
             http_response_code(404);
@@ -67,6 +67,7 @@ class OfertaController
         header('Content-Type: application/json');
         echo json_encode($oferta);
     }
+
 
     public function store(): void
     {
@@ -112,12 +113,6 @@ class OfertaController
             return;
         }
 
-        if (!$this->hasDocuments($oferta->id)) {
-            http_response_code(422);
-            echo json_encode(['error' => 'Debe existir al menos un documento cargado']);
-            return;
-        }
-
         $data = json_decode(file_get_contents('php://input'), true);
 
         if (!$data) {
@@ -140,6 +135,7 @@ class OfertaController
 
         echo json_encode($oferta);
     }
+
 
 
     public function uploadDocumento(int $id): void

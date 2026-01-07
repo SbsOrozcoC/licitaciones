@@ -10,11 +10,28 @@ new Vue({
     loading: false,
     error: null,
 
+    showEditModal: false,
+    editForm: {},
+    editError: null,
+    editLoading: false,
+
+    documentForm: {
+      titulo: "",
+      descripcion: "",
+      archivo: null,
+    },
+    documentLoading: false,
+
+    showViewModal: false,
+    viewOffer: null,
+    viewLoading: false,
+
     search: "",
     meta: {
       page: 1,
       per_page: 10,
       last_page: 1,
+      total: 0,
     },
 
     form: {
@@ -164,6 +181,135 @@ new Vue({
         return;
       }
       this.fetchOffers(page);
+    },
+
+    openEditModal(offer) {
+      this.editForm = { ...offer };
+      this.editError = null;
+      this.showEditModal = true;
+    },
+
+    closeEditModal() {
+      this.showEditModal = false;
+      this.editForm = {};
+    },
+
+    updateOffer() {
+      this.editLoading = true;
+      this.editError = null;
+
+      api
+        .put(`/ofertas/${this.editForm.id}`, this.editForm)
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Oferta actualizada",
+            text: "Los cambios fueron guardados",
+          });
+
+          this.closeEditModal();
+          this.fetchOffers();
+        })
+        .catch((error) => {
+          let message = "Error al actualizar la oferta";
+
+          if (error.response && error.response.data) {
+            if (error.response.data.error) {
+              message = error.response.data.error;
+            } else if (error.response.data.errors) {
+              message = "Verifique los datos ingresados";
+            }
+          }
+
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: message,
+          });
+        })
+        .finally(() => {
+          this.editLoading = false;
+        });
+    },
+
+    handleFile(event) {
+      this.documentForm.archivo = event.target.files[0];
+    },
+
+    uploadDocument() {
+      if (!this.documentForm.archivo) {
+        Swal.fire({
+          icon: "warning",
+          title: "Archivo requerido",
+          text: "Debe seleccionar un archivo",
+        });
+        return;
+      }
+
+      this.documentLoading = true;
+
+      const formData = new FormData();
+      formData.append("archivo", this.documentForm.archivo);
+      formData.append("titulo", this.documentForm.titulo);
+      formData.append("descripcion", this.documentForm.descripcion);
+
+      api
+        .post(`/ofertas/${this.editForm.id}/documentos`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Documento cargado",
+            text: "El documento fue subido correctamente",
+          });
+
+          this.documentForm = {
+            titulo: "",
+            descripcion: "",
+            archivo: null,
+          };
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No se pudo subir el documento",
+          });
+        })
+        .finally(() => {
+          this.documentLoading = false;
+        });
+    },
+
+    openViewModal(id) {
+      this.viewLoading = true;
+      this.viewOffer = null;
+      this.showViewModal = true;
+
+      api
+        .get(`/ofertas/${id}`)
+        .then((response) => {
+          this.viewOffer = response.data;
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No se pudo cargar la oferta",
+          });
+          this.showViewModal = false;
+        })
+        .finally(() => {
+          this.viewLoading = false;
+        });
+    },
+
+    closeViewModal() {
+      this.showViewModal = false;
+      this.viewOffer = null;
     },
   },
 });
