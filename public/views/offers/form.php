@@ -89,8 +89,12 @@
 
             </div>
 
-            <button class="btn btn-success" :disabled="formLoading">
-                {{ formLoading ? 'Guardando...' : 'Crear oferta' }}
+            <button
+                type="submit"
+                class="btn btn-success"
+                :disabled="formLoading">
+                <span v-if="formLoading" class="spinner-border spinner-border-sm me-2"></span>
+                Crear oferta
             </button>
 
         </form>

@@ -32,7 +32,8 @@
                         <input
                             type="text"
                             class="form-control"
-                            v-model="editForm.objeto">
+                            v-model="editForm.objeto"
+                            :disabled="editLoading">
                     </div>
 
                     <div class="col-md-6">
@@ -49,7 +50,8 @@
                         <textarea
                             class="form-control"
                             rows="3"
-                            v-model="editForm.descripcion">
+                            v-model="editForm.descripcion"
+                            :disabled="editLoading">
                         </textarea>
                     </div>
                 </div>
@@ -63,7 +65,8 @@
                         <input
                             type="number"
                             class="form-control"
-                            v-model="editForm.presupuesto">
+                            v-model="editForm.presupuesto"
+                            :disabled="editLoading">
                     </div>
 
                     <div class="col-md-4">
@@ -79,7 +82,8 @@
                         <input
                             type="date"
                             class="form-control"
-                            v-model="editForm.fecha_cierre">
+                            v-model="editForm.fecha_cierre"
+                            :disabled="editLoading">
                     </div>
                 </div>
 
@@ -98,7 +102,8 @@
                         <input
                             type="text"
                             class="form-control"
-                            v-model="documentForm.titulo">
+                            v-model="documentForm.titulo"
+                            :disabled="editLoading">
                     </div>
 
                     <!-- Descripción -->
@@ -107,7 +112,8 @@
                         <input
                             type="text"
                             class="form-control"
-                            v-model="documentForm.descripcion">
+                            v-model="documentForm.descripcion"
+                            :disabled="editLoading">
                     </div>
 
                 </div>
@@ -124,15 +130,14 @@
                     </div>
 
                     <!-- Botón subir -->
-                    <div class="col-md-3 d-grid">
-                        <button
-                            type="button"
-                            class="btn btn-outline-primary"
-                            :disabled="documentLoading"
-                            @click="uploadDocument">
-                            Subir documento
-                        </button>
-                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary"
+                        :disabled="documentLoading"
+                        @click="uploadDocument">
+                        <span v-if="documentLoading" class="spinner-border spinner-border-sm me-2"></span>
+                        Subir documento
+                    </button>
 
                 </div>
 
@@ -153,8 +158,10 @@
                     class="btn btn-primary"
                     :disabled="!canSaveOffer || editLoading"
                     @click="updateOffer">
+                    <span v-if="editLoading" class="spinner-border spinner-border-sm me-2"></span>
                     Guardar cambios
                 </button>
+
 
 
             </div>

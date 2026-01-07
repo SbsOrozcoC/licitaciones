@@ -271,7 +271,8 @@ new Vue({
           Swal.fire({
             icon: "success",
             title: "Documento cargado",
-            text: "El documento fue subido correctamente",
+            timer: 1500,
+            showConfirmButton: false,
           });
 
           this.documentsCount++;
