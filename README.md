@@ -43,10 +43,8 @@ con frontend en Vue.js y backend completamente funcional.
     http://localhost:8080
 ```
 
-5. Endpoints disponibles
+5. 🔌 Endpoints disponibles
 ```md
-    ## 🔌 Endpoints Backend
-
     ### Crear oferta
     POST /ofertas
 

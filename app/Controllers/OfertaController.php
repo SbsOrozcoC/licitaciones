@@ -19,13 +19,17 @@ class OfertaController
         $perPage  = max((int)($_GET['per_page'] ?? 10), 1);
         $offset   = ($page - 1) * $perPage;
 
-        $query = Oferta::query();
+        $query = Oferta::with('actividad');
 
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('consecutivo', 'LIKE', "%{$search}%")
                     ->orWhere('objeto', 'LIKE', "%{$search}%")
-                    ->orWhere('descripcion', 'LIKE', "%{$search}%");
+                    ->orWhere('descripcion', 'LIKE', "%{$search}%")
+                    ->orWhere('estado', 'LIKE', "%{$search}%")
+                    ->orWhereHas('actividad', function ($a) use ($search) {
+                        $a->where('producto', 'LIKE', "%{$search}%");
+                    });
             });
         }
 
@@ -48,6 +52,7 @@ class OfertaController
             ],
         ]);
     }
+
 
     public function show(int $id): void
     {
