@@ -23,4 +23,14 @@ class Oferta extends Model
     ];
 
     public $timestamps = false;
+
+    public function actividad()
+    {
+        return $this->belongsTo(Actividad::class, 'actividad_id');
+    }
+
+    public function documentos()
+    {
+        return $this->hasMany(Documento::class, 'licitacion_id');
+    }
 }
