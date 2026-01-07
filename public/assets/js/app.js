@@ -26,6 +26,8 @@ new Vue({
     viewOffer: null,
     viewLoading: false,
 
+    documentsCount: 0,
+
     search: "",
     meta: {
       page: 1,
@@ -54,6 +56,12 @@ new Vue({
   mounted() {
     this.fetchOffers();
     this.fetchActivities();
+  },
+
+  computed: {
+    canSaveOffer() {
+      return this.documentsCount > 0;
+    },
   },
 
   methods: {
@@ -185,7 +193,7 @@ new Vue({
 
     openEditModal(offer) {
       this.editForm = { ...offer };
-      this.editError = null;
+      this.documentsCount = offer.documentos ? offer.documentos.length : 0;
       this.showEditModal = true;
     },
 
@@ -265,6 +273,8 @@ new Vue({
             title: "Documento cargado",
             text: "El documento fue subido correctamente",
           });
+
+          this.documentsCount++;
 
           this.documentForm = {
             titulo: "",

@@ -43,7 +43,8 @@
         </div>
 
         <!-- Modales fuera de la card -->
-        <?php require __DIR__ . '/offers/edit-modal.php'; ?>
+        <?php require __DIR__ . '/offers/modals/edit-modal.php'; ?>
+        <?php require __DIR__ . '/offers/modals/view-modal.php'; ?>
 
     </div>
 
