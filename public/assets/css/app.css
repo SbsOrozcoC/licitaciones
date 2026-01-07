@@ -1,3 +1,15 @@
 body {
-    background-color: #f8f9fa;
+  background-color: #f5f6f8;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.card {
+  border: none;
+}
+
+.card-header h3 {
+  font-weight: 600;
 }

@@ -1,44 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Licitaciones</title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap 5 -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+        rel="stylesheet">
 
+    <!-- App styles -->
     <link rel="stylesheet" href="/assets/css/app.css">
 </head>
+
 <body>
 
-<div id="app" class="container mt-4">
+    <div id="app" class="container my-4">
 
-    <h1 class="mb-4">Listado de Ofertas</h1>
+        <div class="card shadow-sm rounded-4">
 
-    <?php require __DIR__ . '/offers/form.php'; ?>
-    <?php require __DIR__ . '/offers/filters.php'; ?>
-    <?php require __DIR__ . '/offers/table.php'; ?>
-    <?php require __DIR__ . '/offers/edit-modal.php'; ?>
+            <!-- Header -->
+            <div class="card-header bg-white border-0">
+                <h3 class="mb-0">Listado de Ofertas</h3>
+            </div>
 
-</div>
+            <!-- Body -->
+            <div class="card-body">
 
-<!-- Vue -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+                <!-- Crear oferta -->
+                <?php require __DIR__ . '/offers/form.php'; ?>
 
-<!-- Axios -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <hr>
 
-<!-- SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <!-- Filtros / búsqueda / export -->
+                <?php require __DIR__ . '/offers/filters.php'; ?>
 
-<!-- API Service -->
-<script src="/assets/js/services/api.js"></script>
+                <!-- Tabla + paginación -->
+                <?php require __DIR__ . '/offers/table.php'; ?>
 
-<!-- Vue App -->
-<script src="/assets/js/app.js"></script>
+            </div>
+        </div>
+
+        <!-- Modales fuera de la card -->
+        <?php require __DIR__ . '/offers/edit-modal.php'; ?>
+
+    </div>
+
+    <!-- Vue 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- API Service -->
+    <script src="/assets/js/services/api.js"></script>
+
+    <!-- Vue App -->
+    <script src="/assets/js/app.js"></script>
 
 </body>
+
 </html>

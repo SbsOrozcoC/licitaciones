@@ -35,17 +35,20 @@
                 <td>{{ offer.fecha_cierre }} {{ offer.hora_cierre }}</td>
                 <td>{{ offer.estado }}</td>
                 <td>
-                    <button
-                        class="btn btn-sm btn-primary me-1"
-                        @click="openViewModal(offer.id)">
-                        Ver
-                    </button>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button
+                            class="btn btn-outline-primary"
+                            @click="openViewModal(offer.id)">
+                            Ver
+                        </button>
 
-                    <button
-                        class="btn btn-sm btn-secondary"
-                        @click="openEditModal(offer)">
-                        Editar
-                    </button>
+                        <button
+                            class="btn btn-outline-secondary"
+                            @click="openEditModal(offer)">
+                            Editar
+                        </button>
+                    </div>
+
 
                 </td>
             </tr>
